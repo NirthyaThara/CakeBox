@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SweetBox • Premium Cake Boxes</title>
+  <meta name="description" content="Beautiful, sturdy cake boxes for every occasion. Shop premium dessert packaging with same‑day dispatch." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    
+:root{
+  --bg:#fff8f7;
+  --panel:#fff;
+  --soft:#fdf1f4;
+  --brand:#f8a5c2;
+  --brand-2:#ffe0ac;
+  --text:#5a3636;
+  --muted:#826565;
+  --ok:#9ad6a7;
+  --warn:#f6c177;
+  --shadow: 0 6px 20px rgba(0,0,0,.08);
+  --radius: 18px;
+}
+
+    *{box-sizing:border-box;scroll-behavior:smooth;}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1200px, 92vw); margin:0 auto;transition:transform 1s ease;}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding: .9rem 1.2rem; border-radius: 999px; border:1px solid transparent; font-weight:600; cursor:pointer; transition:.25s ease; box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand), #ff7ca8);}
+    .btn.primary:hover{transform:translateY(-3px)}
+    .btn.ghost{background:transparent; border-color:#cf2789bc}
+    .tag{display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .7rem; border-radius:999px; background:#f7c3cc; color:var(--muted); font-size:.8rem;}
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:#f48eb2e1; border-bottom:1px solid #683b8114}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.7rem 0}
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.4px}
+    .brand .logo{width:36px; height:36px; border-radius:10px; background:conic-gradient(from 210deg at 50% 50%, var(--brand), #fb7185, var(--brand-2)); box-shadow:0 10px 20px #ff5a8e55}
+    .nav .actions{display:flex; align-items:center; gap:.6rem}
+
+    /* Hero */
+    .hero{position:relative; isolation:isolate}
+    .hero .bg{position:absolute; inset:0; z-index:-1; background:radial-gradient(1200px 480px at 70% -10%, #ff5a8e22, transparent), radial-gradient(800px 400px at -10% 10%, #ffd16622, transparent)}
+    .hero .wrap{display:grid; grid-template-columns: 1.2fr .8fr; gap:2rem; align-items:center; padding: 3.4rem 0 2rem}
+    @media (max-width: 900px){ .hero .wrap{grid-template-columns:1fr; padding:2.4rem 0 1rem} }
+    .headline{font-size:clamp(2rem, 4vw + .8rem, 3.4rem); line-height:1.05; font-weight:800; margin:0 0 .7rem}
+    .sub{color:var(--muted); font-size:1.05rem; max-width:50ch}
+    .hero .cta{display:flex; gap:.8rem; margin-top:1.2rem; flex-wrap:wrap;transition:transform 2s ease;}
+    .hero .photo{position:relative}
+    .hero-card{border-radius:var(--radius); overflow:hidden; background:linear-gradient(180deg,#cc87aecf,#ffffff05); border:1px solid #ffffff18; box-shadow:var(--shadow)}
+    .hero-card img{aspect-ratio: 4/3; object-fit:cover}
+    .hero-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1rem}
+    .stat{padding:1rem; border-radius:16px; background:#fce4ec; border:1px solid #ffffff10; text-align:center}
+    .stat b{font-size:1.4rem}
+
+    /* Features */
+    .features{padding: 2.6rem 0}
+    .features .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem}
+    @media (max-width: 900px){ .features .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 560px){ .features .grid{grid-template-columns:1fr} }
+    .feat{padding:1rem; background:linear-gradient(180deg,#fff8f896,#ffb8c679); border:1px solid #ffffff14; border-radius:16px}
+    .feat h4{margin:.2rem 0 .2rem}
+    .feat p{margin:0; color:var(--muted); font-size:.95rem}
+
+    /* Products */
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:1rem}
+    .section-title h2{margin:0; font-size:1.8rem}
+    .products{padding: .8rem 0 2.6rem}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+    @media (max-width: 900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 560px){ .grid{grid-template-columns:1fr} }
+    .card{background:linear-gradient(180deg,#ffffff10,#ffffff06); border:1px solid #ffffff16; border-radius:18px; overflow:hidden; position:relative; transition:.2s ease}
+    .card:hover{transform: translateY(-4px)}
+    .card .img-wrap{position:relative; overflow:hidden}
+    .card img{aspect-ratio:1/1; object-fit:cover; transition: transform .5s ease}
+    .card:hover img{transform:scale(1.05)}
+    .badge{position:absolute; top:10px; left:10px; background:#000000aa; color:#fff; padding:.35rem .6rem; font-size:.8rem; border-radius:999px; border:1px solid #ffffff22}
+    .card .body{padding:1rem}
+    .price{display:flex; gap:.6rem; align-items:baseline}
+    .price .now{font-size:1.2rem; font-weight:700}
+    .price .was{color:#ffffff70; text-decoration:line-through; font-size:.95rem}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:.6rem}
+    .qty{display:inline-flex; align-items:center; gap:.5rem; border:1px solid #ffffff22; border-radius:999px; padding:.25rem .5rem}
+    .qty button{background:transparent; border:0; color:var(--text); font-size:1rem; padding:.2rem .4rem; cursor:pointer}
+
+    /* Testimonials */
+    .testimonials{padding:2.6rem 0}
+    .quote-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;opacity: 0;transition:opacity 1s ease;}
+    .quote-grid.visible{opacity: 1}
+    @media (max-width: 900px){ .quote-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 560px){ .quote-grid{grid-template-columns:1fr} }
+    .quote{padding:1rem; border-radius:16px; background:linear-gradient(180deg,#ffffff10,#ffffff06); border:1px solid #ffffff12}
+    .quote .stars{letter-spacing:.15rem}
+
+    /* Gallery */
+    /* .gallery{padding:2.6rem 0}
+    .masonry{columns:3 280px; column-gap:1rem}
+    .masonry img{width:100%; border-radius:16px; margin:0 0 1rem; break-inside:avoid; border:1px solid #ffffff16} */
+
+    /* Footer */
+    footer{padding:2.6rem 0; border-top:1px solid #b13a6a; color:#bc196d; background-color:#f7b9ce }   
+    footer .cols{display:grid; grid-template-columns:1.2fr .8fr .8fr; gap:2rem}
+    @media (max-width: 900px){ footer .cols{grid-template-columns:1fr 1fr} }
+    @media (max-width: 560px){ footer .cols{grid-template-columns:1fr} }
+
+    /* Cart Drawer */
+    .drawer{position:fixed; inset:0; display:none}
+    .drawer.open{display:block}
+    .drawer .backdrop{position:absolute; inset:0; background:#0008}
+    .drawer .panel{position:absolute; right:0; top:0; height:100%; width:min(420px, 94vw); background:var(--panel); border-left:1px solid #ffffff22; box-shadow:var(--shadow); display:flex; flex-direction:column}
+    .drawer header{display:flex; align-items:center; justify-content:space-between; padding:1rem; border-bottom:1px solid #ffffff18}
+    .drawer .content{padding:1rem; overflow:auto; flex:1}
+    .line{display:flex; align-items:center; gap:.8rem; border:1px solid #ffffff14; border-radius:14px; padding:.6rem .6rem; margin-bottom:.6rem}
+    .line img{width:56px; height:56px; border-radius:10px; object-fit:cover}
+    .line .qty-sm{display:flex; align-items:center; gap:.4rem; margin-left:auto}
+    .drawer footer{border-top:1px solid #ffffff18; padding:1rem}
+
+    /* Tiny utility */
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container inner">
+      <a class="brand" href="#">
+        <span class="logo" aria-hidden="true"></span>
+        <span>SweetBox</span>
+      </a>
+      <div class="actions">
+        <a href="#products" style="background-color:#fae0e5;padding:15px 25px;border:2px solid #f182a9;border-radius:20px;">Shop</a>
+        <button id="openCart" class="btn primary" style="background-color:#b8398b ;" aria-label="Open cart">
+          <!-- cart icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 3h2l1 7h12l2-5H6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.8" fill="white"/><circle cx="18" cy="20" r="1.8" fill="white"/></svg>
+          <span>Cart</span>
+          <span id="cartCount" class="tag" aria-live="polite">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="container wrap">
+      <div>
+        <span class="tag">New • Autumn collection</span>
+        <h1 class="headline">Elegant Cake Boxes that make every dessert look like a gift 🎀</h1>
+        <p class="sub">From single‑slice carriers to tall 3‑tier cake boxes with crystal‑clear windows — durable, grease‑resistant and absolutely photo‑ready.</p>
+        <div class="hero-stats">
+          <div class="stat"><b>20k+</b><div>Happy bakers</div></div>
+          <div class="stat"><b>48h</b><div>Dispatch</div></div>
+          <div class="stat"><b>100%</b><div>Recyclable</div></div>
+        </div>
+        <div class="cta">
+          <a href="#products" class="btn primary">Shop bestsellers</a>
+          <!-- <a href="#gallery" class="btn ghost">See gallery</a> -->
+        </div>
+      </div>
+      <div class="photo">
+        <figure class="hero-card">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1600&auto=format&fit=crop" alt="Tiered cake in a transparent window box with ribbon"/>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+      <div class="grid">
+        <div class="feat">
+          <div class="tag">Strong & neat</div>
+          <h4>Rigid 3‑ply board</h4>
+          <p>No sagging bottoms. Boxes hold shape even with heavy buttercream cakes.</p>
+        </div>
+        <div class="feat">
+          <div class="tag">Grease‑safe</div>
+          <h4>Food‑grade liner</h4>
+          <p>Stain‑resistant interior keeps your presentation spotless.</p>
+        </div>
+        <div class="feat">
+          <div class="tag">Show it off</div>
+          <h4>Crystal window</h4>
+          <p>Premium PET windows resist fogging and scratches.</p>
+        </div>
+        <div class="feat">
+          <div class="tag">Planet‑friendly</div>
+          <h4>100% recyclable</h4>
+          <p>Responsibly sourced board and inks with minimal plastic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products">
+    <div class="container">
+      <div class="section-title">
+        <h2>Shop cake boxes</h2>
+        <div class="tag">Free ribbon pack on orders over Rs.200</div>
+      </div>
+
+      <div class="grid" id="productGrid" aria-live="polite">
+        <!-- Cards will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title"><span>What bakers say</span></h2>
+      <div class="quote-grid">
+        <div class="quote">
+          <div class="stars" aria-label="5 out of 5">★★★★★</div>
+          "These boxes upgraded my whole brand. Clients always comment on the window!"
+          <div class="tag">— Priya, The Sugar Studio</div>
+        </div>
+        <div class="quote">
+          <div class="stars" aria-label="5 out of 5">★★★★★</div>
+          "Sturdy enough for tall 8‑inch cakes. Zero wobble during delivery."
+          <div class="tag">— Mateo, Velvet Crumbs</div>
+        </div>
+        <div class="quote">
+          <div class="stars" aria-label="5 out of 5">★★★★★</div>
+          "Love the quick fold design. Saves me so much prep time before pickups."
+          <div class="tag">— Aisha, Bakery by the Bay</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2>Customer gallery</h2>
+        <div class="tag">Real cakes • Real shine</div>
+      </div>
+      <div class="masonry">
+        <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1200&auto=format&fit=crop" alt="Pink cake displayed in a window cake box"/>
+        <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?q=80&w=1200&auto=format&fit=crop" alt="Assorted cupcakes arranged in a ribboned box"/>
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476e?q=80&w=1200&auto=format&fit=crop" alt="Tall buttercream cake ready for delivery"/>
+        <img src="https://images.unsplash.com/photo-1541976076758-347942db1970?q=80&w=1200&auto=format&fit=crop" alt="Branded dessert packaging with pastel colors"/>
+        <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=1200&auto=format&fit=crop" alt="Chocolate cake slice box close‑up"/>
+        <img src="https://images.unsplash.com/photo-1604908176997-43165244a4bd?q=80&w=1200&auto=format&fit=crop" alt="Wedding cake in white rigid box"/>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container cols">
+      <div>
+        <div class="brand"><span class="logo" aria-hidden="true"></span>SweetBox</div>
+        <p style="max-width:50ch">Premium cake boxes crafted for home bakers and boutique patisseries. Designed to protect, built to impress.</p>
+        <div class="tag" style="background-color: rgb(255, 214, 231);">© <span id="year"></span> SweetBox Packaging</div>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <p class="muted">help@sweetbox.example</p>
+        <p>Shipping & Returns</p>
+        <p>Privacy & Terms</p>
+      </div>
+      <div>
+        <h4>Join our list</h4>
+        <form id="newsletter">
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" type="email" placeholder="you@bakery.com" required style="width:100%; padding: .9rem 1rem; border-radius:12px; border:1px solid #ffffff22; background:#e6dfe3aa; color:var(--text); margin-bottom:.6rem">
+          <button class="btn primary" style="width:100%;background-color:linear-gradient(180,#fae6ed,#f48eb1);">Subscribe</button>
+          <small class="muted">No spam. Unsubscribe anytime.</small>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <aside id="drawer" class="drawer" aria-hidden="true" aria-label="Shopping cart">
+    <div class="backdrop" data-close></div>
+    <div class="panel">
+      <header>
+        <strong>Your Cart</strong>
+        <button class="btn ghost" data-close>Close</button>
+      </header>
+      <div class="content" id="cartLines">
+        <p class="muted">Your cart is empty. Let’s add some boxes!</p>
+      </div>
+      <footer>
+        <div class="row" style="margin-bottom:.6rem">
+          <div>Subtotal</div>
+          <strong id="subtotal">$0.00</strong>
+        </div>
+        <button class="btn primary" style="width:100%">Checkout</button>
+      </footer>
+    </div>
+  </aside>
+
+  <script>
+    const products = [
+      {id:'bx01', name:'Macaron Box - Gift Box 7x7 inch', price:20.99, was:22.99, badge:'Bestseller', img:'\ChatGPT Image Aug 23, 2025, 03_27_01 PM.png'},
+      {id:'bx02', name:'Tall Box - 10 inch (12" height)', price:14.5, was:16.5, badge:'New', img:'\cake-box.jpg'},
+      {id:'bx03', name:'Cupcake Box - 6 inserts', price:20.25, was:28.5, badge:'Save 15%', img:'https://images.unsplash.com/photo-1562440499-64c9a111f713?q=80&w=1600&auto=format&fit=crop'},
+      {id:'bx04', name:'Window Cake Box • 8 inch', price:38.8, was:45.0, badge:'Staff pick', img:'\ChatGPT Image Aug 23, 2025, 03_43_36 PM.png'},
+      {id:'bx05', name:'Chocolate and Sweets Box - 1 pc', price:40.50, was:50.8, badge:'Budget', img:'\cake box 2.jpg'},
+      {id:'bx06', name:'Take over Box - 12 inch', price:70.00, was:85.00, badge:'Pro', img:'\ChatGPT Image Aug 23, 2025, 04_20_55 PM.png'}
+    ];
+
+    const grid = document.getElementById('productGrid');
+    const cart = new Map();
+
+    // Build product cards
+    products.forEach(p => {
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="img-wrap">
+          <img src="${p.img}" alt="${p.name}">
+          <span class="badge">${p.badge}</span>
+        </div>
+        <div class="body">
+          <div class="row">
+            <h3 style="margin:.2rem 0">${p.name}</h3>
+            <span class="tag">in stock</span>
+          </div>
+          <div class="price">
+            <span class="now">Rs.${p.price.toFixed(2)}</span>
+            <span class="was">Rs.${p.was.toFixed(2)}</span>
+          </div>
+          <div class="row" style="margin-top:.7rem">
+            <div class="qty" aria-label="Choose quantity">
+              <button aria-label="decrease" data-dec>-</button>
+              <span data-q>1</span>
+              <button aria-label="increase" data-inc>+</button>
+            </div>
+            <button class="btn primary" data-add>Add to cart</button>
+          </div>
+        </div>`;
+
+      const q = { n: 1 };
+      el.querySelector('[data-inc]').addEventListener('click',()=>{ q.n++; el.querySelector('[data-q]').textContent=q.n; });
+      el.querySelector('[data-dec]').addEventListener('click',()=>{ q.n=Math.max(1, q.n-1); el.querySelector('[data-q]').textContent=q.n; });
+      el.querySelector('[data-add]').addEventListener('click',()=> addToCart(p, q.n));
+
+      grid.appendChild(el);
+    });
+
+    // Cart drawer handlers
+    const drawer = document.getElementById('drawer');
+    const openCartBtn = document.getElementById('openCart');
+    const cartCount = document.getElementById('cartCount');
+    const subtotalEl = document.getElementById('subtotal');
+    const linesEl = document.getElementById('cartLines');
+
+    const openDrawer = () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); };
+    const closeDrawer = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); };
+
+    openCartBtn.addEventListener('click', openDrawer);
+    drawer.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', closeDrawer));
+
+    function addToCart(p, qty){
+      const current = cart.get(p.id) || { ...p, qty: 0 };
+      current.qty += qty;
+      cart.set(p.id, current);
+      renderCart();
+    }
+
+    function changeQty(id, delta){
+      const item = cart.get(id);
+      if(!item) return;
+      item.qty += delta;
+      if(item.qty <= 0) cart.delete(id);
+      renderCart();
+    }
+
+    function renderCart(){
+      linesEl.innerHTML='';
+      let subtotal = 0;
+      if(cart.size===0){
+        linesEl.innerHTML = '<p class="muted">Your cart is empty. Let\'s add some boxes!</p>';
+      } else {
+        cart.forEach(item=>{
+          subtotal += item.price * item.qty;
+          const line = document.createElement('div');
+          line.className = 'line';
+          line.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div>
+              <div style="font-weight:600">${item.name}</div>
+              <div class="muted">Rs.${item.price.toFixed(2)} × ${item.qty}</div>
+            </div>
+            <div class="qty-sm">
+              <button class="btn ghost" aria-label="decrease" data-minus>−</button>
+              <button class="btn primary" aria-label="increase" data-plus>+</button>
+            </div>`;
+          line.querySelector('[data-minus]').addEventListener('click', ()=> changeQty(item.id, -1));
+          line.querySelector('[data-plus]').addEventListener('click', ()=> changeQty(item.id, +1));
+          linesEl.appendChild(line);
+        });
+      }
+      subtotalEl.textContent = `Rs.${subtotal.toFixed(2)}`;
+      const count = Array.from(cart.values()).reduce((s,i)=>s+i.qty,0);
+      cartCount.textContent = count;
+    }
+
+    // Newsletter
+    document.getElementById('newsletter').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      alert(`Thanks! We'll send sweet deals to ${email}.`);
+      e.target.reset();
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible'); // 👈 this is where .visible is added
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.quote-grid').forEach(el => observer.observe(el));
+
+
+  </script>
+</body>
+</html>
