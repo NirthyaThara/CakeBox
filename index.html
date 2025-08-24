@@ -24,6 +24,7 @@
   --radius: 18px;
 }
 
+@media(width<900px){ body{width:100%;overflow-x:hidden;box-sizing:border-box;scroll-behavior:smooth;}}
      *{box-sizing:border-box;scroll-behavior:smooth;} 
     /* @media (prefers-color-scheme: dark) {
       :root{
@@ -48,6 +49,7 @@
     a{color:inherit; text-decoration:none}
     img{max-width:100%; display:block}
     .container{width:min(1200px, 92vw); margin:0 auto;transition:transform 1s ease;}
+    .btn.secondary{padding:14.4px 19.2px; background:#edd2dedd; border:1px solid #e553a8bc; color:var(--text);}
     .btn{display:inline-flex; align-items:center; gap:.6rem; padding: .9rem 1.2rem; border-radius: 999px; border:1px solid transparent; font-weight:600; cursor:pointer; transition:.25s ease; box-shadow:var(--shadow)}
     .btn.primary{background:linear-gradient(135deg,var(--brand), #ff7ca8);}
     .btn.primary:hover{transform:translateY(-3px)}
@@ -57,7 +59,23 @@
     .nav .inner{display:flex; align-items:center; justify-content:space-between; padding:.7rem 0}
     .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.4px}
     .brand .logo{width:36px; height:36px; border-radius:10px; background:conic-gradient(from 210deg at 50% 50%, var(--brand), #fb7185, var(--brand-2)); box-shadow:0 10px 20px #ff5a8e55}
-    .nav .actions{display:flex; align-items:center; gap:.6rem}
+    .nav .actions{display:flex; align-items:center; gap:.6rem; width:auto;max-width:100%;}
+    /* @media (max-width: 560px) {.nav.actions{}} */
+
+    @media (max-width: 480px) {
+  .nav .actions a, .nav .actions button, .nav .actions .btn ,.btn.secondary{
+    padding: 0.5em 0.5em;
+    font-size: 0.9rem;
+    width: 100%; /* Full-width buttons on mobile */
+  }
+
+  .content {
+    font-size: 0.9rem;
+    padding: 1em;
+  }
+}
+
+  
 
     /* Hero */
      .hero .wrap {display: grid;  grid-template-columns: 1fr; flex-direction:column;gap: 2re}
@@ -80,6 +98,7 @@
       "sub"
       "stats"
       "cta";
+      overflow: hidden;
   }
 
   .hero .photo {
@@ -115,7 +134,7 @@
     .feat p{margin:0; color:var(--muted); font-size:.95rem}
 
     /* Products */
-    .section-title{display:flex; align-items:end; justify-content:space-between; gap:1rem}
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:0.5rem;margin-bottom:20px;}
     .section-title h2{margin:0; font-size:1.8rem}
     .products{padding: .8rem 0 2.6rem}
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
@@ -180,7 +199,7 @@
         <span>SweetBox</span>
       </a>
       <div class="actions">
-        <a href="#products" style="background-color:#fae0e5;padding:15px 25px;border:2px solid #f182a9;border-radius:20px;">Shop</a>
+        <a href="#products" class="btn secondary">Shop</a>
         <button id="openCart" class="btn primary" style="background-color:#b8398b ;" aria-label="Open cart">
           <!-- cart icon -->
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 3h2l1 7h12l2-5H6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.8" fill="white"/><circle cx="18" cy="20" r="1.8" fill="white"/></svg>
